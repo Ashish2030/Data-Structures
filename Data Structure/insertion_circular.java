@@ -1,0 +1,182 @@
+import java.util.*;
+public class insertion_circular
+{ 
+   static Node head;
+       Node temp;
+    Node prev1;
+    class Node 
+    { 
+        int data; 
+        Node next; 
+        Node(int d)
+        {
+            data = d;
+        } 
+    } 
+    public void append_value(int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+            prev1=n;
+            prev1.next=head;
+            
+        }
+        else
+        {
+            prev1.next=n;
+            n.next=head;
+            prev1=n;
+        }
+    }
+
+     public void After(int a,int insert)
+    {
+    Node head1=head;
+  do
+    {
+       if(head1.data==a) 
+       {
+           Node n=new Node(insert);
+           if(head1.next==head)
+           {
+             head1.next=n;
+             n.next=head;
+             
+          break;
+            
+           }
+           else
+           {
+               prev1=head1.next;
+             head1.next=n;
+             n.next=prev1;
+             break;
+           }
+           
+       }
+
+       head1=head1.next;
+    }
+      while(head1!=head);
+    
+    }
+ 
+   
+         public void before(int a,int insert)
+    {
+    Node head1=head;
+    Node head2=head;
+     Node prev2;
+    do
+    {
+       if(head1.data==a) 
+       {
+           Node k=new Node(insert);
+          
+           do
+           {
+               prev2=head2;
+               head2=head2.next;
+           }
+           while(head2!=head);
+           
+           if(head1==head)
+           {
+              k.next=head;
+              head=k;
+              prev2.next=head;
+              break;
+              
+           }
+           else
+           {
+           prev1.next=k;
+           k.next=head1;
+           break;
+            
+           }
+           
+       }
+       prev1=head1;
+       head1=head1.next;
+    }
+    while(head1!=head);
+       
+    }
+  
+  
+      public void push(int data)
+    {
+    
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=n;
+            prev1=n;
+            prev1.next=head;
+            
+        }
+        else
+        {
+            Node head1=head;
+              do{
+                  prev1=head1;
+                head1=head1.next;
+               }
+            while(head1!=head);
+           
+            n.next=head;
+            head=n;
+             prev1.next=head;
+            
+          
+        }
+    }
+    public void Print(Node head)
+{
+ Node head1=head;
+  System.out.print("Your list is : ");
+  while(head!=head1.next)
+  {
+       System.out.print(head1.data+"-");
+      head1=head1.next;
+      
+  }
+    System.out.println(head1.data+" ");
+}
+
+    public static void main(String arg[])
+    {
+        insertion_circular b=new insertion_circular();
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        while(a>0)
+        {
+          int data=sc.nextInt();
+          b.append_value(data); 
+          a--;
+        }
+         System.out.println("After append function");
+        b.Print(head);
+         int push_data=sc.nextInt();
+        b.push(push_data);
+        System.out.println("\nAfter push  "+push_data+" data in function");
+         b.Print(head);
+      
+         int After_node=sc.nextInt();
+          int insert=sc.nextInt();
+         b.After(After_node,insert);
+          System.out.println("\nAfter insertion at node "+After_node+" function");
+         b.Print(head);
+        
+          int before_node=sc.nextInt();
+           insert=sc.nextInt();
+         b.before(before_node,insert);
+          System.out.println("\nBefore insertion at node "+before_node+" function");
+         b.Print(head);
+        
+        
+    }
+}

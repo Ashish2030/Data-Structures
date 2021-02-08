@@ -1,0 +1,27 @@
+/* class LinkList
+{
+  int data;
+  LinkList next;
+  LinkList prev;
+} */
+
+static LinkList rotateByK(LinkList head, int k)
+{
+LinkList head1=head;
+  LinkList prev1=null;
+  LinkList temp=null;
+ while(head1!=null)
+ {
+   if(head1.data==k)
+   {
+     temp=head1;
+     head1.prev.next=null;
+     head1.prev=null;
+   }
+   prev1=head1;
+   head1=head1.next;
+ }
+  prev1.next=head;
+  head.prev=prev1;
+  head=temp1;
+}
