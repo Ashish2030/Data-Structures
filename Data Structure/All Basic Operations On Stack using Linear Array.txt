@@ -1,0 +1,111 @@
+
+class Stack
+{
+    int stack[] = new int[5];
+    int top = 0;
+    public void push(int data)
+    {
+        if(top==5)
+        {
+            System.out.println("Stack Is Full!!!");
+        }
+        else
+        {
+            stack[top] = data;
+            top++;
+        }
+    }
+    public int pop()
+    {
+        int data=0;
+        if(isEmpty())
+        {
+            System.out.println("Stack Is Empty!!!");
+        }
+        else
+        {
+            top--;
+            data = stack[top];
+            stack[top] = 0;
+        }
+        return data;
+    }
+    public int peek()
+    {
+        int data;
+        data = stack[top-1];
+        return data;
+    }
+    public void show()
+    {
+        System.out.print("Updated Stack Is: ");
+        for(int n:stack)
+        {
+            System.out.print(n + " ");
+        }
+        System.out.println("\n");
+    }
+    public int size()
+    {
+        return top;
+    }
+    public boolean isEmpty()
+    {
+        return top<=0;
+    }
+    public static void main(String args[])
+    {
+        int temp=0;
+        Stack s = new Stack();
+
+        System.out.println("\nDefault Size Of Stack Array Is 5\n");
+
+        System.out.println("Popping Value From Stack...");
+        s.pop();
+        s.show();
+
+        System.out.println("Pushing 8, 2, 10 Into Stack...");
+        s.push(8);
+        s.push(2);
+        s.push(10);
+        s.show();
+
+        System.out.println("Size Of Current Stack Is: "+s.size()+"\n");
+
+        temp = s.pop();
+        System.out.println("Popping "+temp+" From Stack...");
+        s.show();
+
+        System.out.print("Peeking Value From Stack: "+s.peek()+"\n\n");
+
+        temp = s.pop();
+        System.out.println("Popping "+temp+" From Stack...");
+        s.show();
+
+        System.out.println("Size Of Current Stack Is: "+s.size()+"\n");
+        
+        System.out.println("Pushing 16 Into Stack...");
+        s.push(16);
+        s.show();
+
+        System.out.println("Pushing 16, 20 Into Stack...");
+        s.push(16);
+        s.push(20);
+        s.push(55);
+        s.show();
+
+        System.out.println("Is Stack Empty: "+s.isEmpty()+"\n");
+
+        System.out.println("Pushing 16, 20 Into Stack...");
+        s.push(11);
+        s.show();
+
+        System.out.print("Peeking Value From Stack: "+s.peek()+"\n\n");
+
+        System.out.println("Size Of Current Stack Is: "+s.size()+"\n");
+
+        temp = s.pop();
+        System.out.println("Popping "+temp+" From Stack...");
+        s.show();
+    }
+}

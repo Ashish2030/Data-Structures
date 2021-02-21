@@ -1,0 +1,124 @@
+class Stack_Using_Linked_List
+{
+	Node top = null;
+    class Node
+    {
+		int data;
+		Node next;
+		Node(int d)
+		{
+			data = d;
+		}
+	}
+	public void push(int x)
+	{
+		Node temp = new Node(x);
+		temp.next = top;
+		top = temp;
+	}
+	public boolean isEmpty()
+	{
+		return top == null;
+	}
+	public int peek()
+	{
+        if(isEmpty())
+        {
+			System.out.println("Stack Is Empty!!!");
+			return 0;
+		}
+        else
+        {
+			return top.data;
+		}
+	}
+	public int pop()
+	{
+		int data;
+        if(top==null)
+        {
+			System.out.println("Stack Is Empty!!!");
+			return 0;
+		}
+		else
+		{
+			data = top.data;
+			top = top.next;
+			return data;
+		}
+	}
+	public void display() 
+	{
+        if(top==null)
+        {
+			System.out.println("Stack Is Empty!!!\n");
+			return;
+		}
+        else
+        {
+			Node temp = top;
+			System.out.print("Updated Stack: ");
+            while(temp!=null)
+            {
+				System.out.print(temp.data + " ");
+				temp = temp.next;
+			}
+			System.out.println("\n");
+		}
+	}
+	public int size()
+	{
+		int count=0;
+		Node temp = top;
+		while(temp!=null)
+		{
+			count++;
+			temp = temp.next;
+		}
+		return count;
+	}
+    public static void main(String args[])
+	{
+		int temp=0;
+		Stack_Using_Linked_List obj = new Stack_Using_Linked_List();
+
+		System.out.println("\nCurrent Size Of Stack: "+obj.size()+"\n");
+
+		System.out.println("Pushing 6, 4, 9 Into Stack...");
+		obj.push(6);
+		obj.push(4);
+		obj.push(9);
+		obj.display();
+
+		System.out.println("Current Size Of Stack: "+obj.size()+"\n");
+
+		System.out.println("Top Element Of Stack Is: "+obj.peek()+"\n");
+		obj.display();
+
+		temp = obj.pop();
+		System.out.println("Popping "+temp+" From Stack");
+		obj.display();
+
+		temp = obj.pop();
+		System.out.println("Popping "+temp+" From Stack");
+		obj.display();
+
+		temp = obj.pop();
+		System.out.println("Popping "+temp+" From Stack");
+		obj.display();
+
+		System.out.println("Top Element Of Stack Is: "+obj.peek()+"\n");
+
+		System.out.println("Is Stack Empty: "+obj.isEmpty()+"\n");
+
+		System.out.println("Pushing 4, 7, 12, 14, 31 Into Stack...");
+		obj.push(4);
+		obj.push(7);
+		obj.push(12);
+		obj.push(14);
+		obj.push(31);
+		obj.display();
+
+		System.out.println("Current Size Of Stack: "+obj.size()+"\n");
+	}
+}

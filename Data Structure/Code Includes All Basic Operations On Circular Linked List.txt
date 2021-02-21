@@ -1,0 +1,240 @@
+public class Circular_Linked_List
+{ 
+    Node head = null;
+    class Node
+    {
+        int data;  
+        Node next;
+        Node(int d)
+        {
+            data = d;
+        }
+    } 
+    public void insert_at_start(int new_data)
+    {
+        Node new_node = new Node(new_data);
+        Node tail = head;
+  	    if(head==null)
+        {
+      	    head = new_node;
+      	    head.next = head;
+        }
+        else
+        {
+            while(tail.next!=head)
+            {
+      	        tail = tail.next;
+            }
+  	        new_node.next = head;
+  	        tail.next = new_node;
+  	        head = new_node;
+        }
+    }
+    public void insert_after(int new_data, int item) 
+    {
+        int flag=0;
+        if(head==null)
+        {
+            System.out.println(item + " Not Present In The List.");
+            return;
+        }
+        Node last = head;
+        while(last.next!=head)
+        {
+            last = last.next;
+        }
+        Node temp1, temp2; 
+        temp2 = last.next; 
+        do
+        { 
+            if(temp2.data==item) 
+            {
+                flag=1;
+                temp1 = new Node(new_data); 
+                temp1.next = temp2.next; 
+                temp2.next = temp1;
+                if(temp2==last)
+                {
+                    last = temp1;
+                } 
+            } 
+            temp2 = temp2.next; 
+        }
+        while(temp2!=last.next);
+        if(flag==0)
+        {
+            System.out.println(item + " Not Present In The List.");
+        } 
+    }
+    public void insert_at_end(int new_data) 
+    {
+        Node new_node = new Node(new_data);
+	    Node tail = head;
+  	    if(head==null)
+        {
+            insert_at_start(new_data);
+            return; 
+        }
+  	    while(tail.next!=head)
+        {
+      	    tail = tail.next;
+        }
+  	    new_node.next = head;
+  	    tail.next = new_node;
+  	    tail = new_node; 
+    }
+    public void delete_head()
+    {
+        Node previous = head;
+        Node next = head;
+        if(head==null)  
+        {
+            System.out.printf("Nothing To Delete!!\n");
+            return;
+        }
+        if(previous.next==previous)  
+        {
+            head = null;
+            return;
+        }
+        while(previous.next!=head) 
+        {
+            previous = previous.next; 
+            next = previous.next; 
+        }
+        previous.next = next.next;
+        head = previous.next;
+    }
+    public void delete_tail()
+    {
+        Node current = head;
+        Node previous = null; 
+        if(head==null)
+        {
+            System.out.printf("Nothing To Delete!!\n"); 
+            return; 
+        }
+        if(current.next==current)  
+        {
+            head = null; 
+            return; 
+        }
+        while(current.next!=head) 
+        {
+            previous = current; 
+            current = current.next; 
+        }
+        previous.next = current.next; 
+        head = previous.next; 
+    }
+    public void delete_node(int key)
+    {
+        if(head==null)
+        {
+            System.out.println("Nothing To Delete!!");
+            return;
+        }
+        Node curr = head;
+        Node prev = null; 
+        while(curr.data!=key)
+        { 
+            if(curr.next==head)
+            { 
+                System.out.printf(key + " Not Found In The List!!\n"); 
+                return; 
+            }
+            prev = curr; 
+            curr = curr.next; 
+        }
+        if(curr==head)
+        {
+            prev = head; 
+            while(prev.next!=head)
+            {
+                prev = prev.next;
+            } 
+            head = curr.next;
+            prev.next = head;
+        }
+        else if(curr.next==head)
+        {
+            prev.next = head; 
+        } 
+        else
+        {
+            prev.next = curr.next; 
+        }
+    }
+    public void print_list_fwd(Node node) 
+    {
+        Node temp = node;
+        System.out.print("Updated List:  ");
+        if (head!=null) 
+        {
+            do
+            {
+                System.out.print(temp.data + " "); 
+                temp = temp.next; 
+            } 
+            while (temp!=head);
+            System.out.println("\n");
+        } 
+    }
+    public static void main(String args[]) 
+    {
+        Circular_Linked_List cll = new Circular_Linked_List();
+        
+        System.out.println("\nDeleting Current Head Of List..");
+        cll.delete_head();
+
+        System.out.println("\nInserting 6 At End Of List..");
+        cll.insert_at_end(6);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Inserting 8 At Head Of List..");
+        cll.insert_at_start(8);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Inserting 9 At End Of List..");
+        cll.insert_at_end(9);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Deleting Current Head (8) Of List..");
+        cll.delete_head();
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Inserting 7 At Start Of List..");
+        cll.insert_at_start(7);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Inserting 1 After 6 In List..");
+        cll.insert_after(1, 6);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Deleting 6 From List..");
+        cll.delete_node(6);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Inserting 2, 0, 10 In List");
+        cll.insert_at_end(0);
+        cll.insert_after(10, 7);
+        cll.insert_at_end(2);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Inserting 48 After 30 In List..");
+        cll.insert_after(48, 30);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Deleting 60 From List..");
+        cll.delete_node(60);
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Deleting Current Tail Of List..");
+        cll.delete_tail();
+        cll.print_list_fwd(cll.head);
+
+        System.out.println("Deleting 1 From List..");
+        cll.delete_node(1);
+        cll.print_list_fwd(cll.head);
+    }
+}

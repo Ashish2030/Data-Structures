@@ -1,4 +1,5 @@
-class Insertion_sort
+import java.util.Scanner;
+class SelectionSort
 
 {
     public static void main(String[] args)
@@ -13,22 +14,21 @@ class Insertion_sort
       }
       for(int i=0;i<k-1;i++)
       {
-         int temp=i+1;
-         for(int j= temp-1;j>=0;j--)
-         {
-             int data=arr[temp];
-             if(arr[j]>data)
-             {
-             int  m=arr[temp];
-              arr[temp]=arr[j];
-              arr[j]=m;
-              temp=j;
-             }
-             else
-             {
-                 break;
-             }
-         }
+          index=0;
+            int min=9999;
+          for(int j=i;j<k;j++)
+          {
+            
+              if(min>arr[j])
+              {
+                  min=arr[j];
+                  index=j;
+              }
+              
+          }
+          int temp=arr[i];
+          arr[i]=arr[index];
+          arr[index]=temp;
       }
       for(int i=0;i<k;i++)
       {
